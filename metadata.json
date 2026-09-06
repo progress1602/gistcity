@@ -1,6 +1,6 @@
 {
   "name": "GistCity",
-  "description": "Dynamic digital media and communications platform dedicated to amplifying stories, brands, businesses, individuals, and events across America, Nigeria & United Kingdom.",
+  "description": "America Leading Online Social Media Blog dedicated to covering stories, brands, businesses, individuals, and events across America, Nigeria & United Kingdom.",
   "requestFramePermissions": [],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

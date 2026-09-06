@@ -36,8 +36,8 @@ const Strategy: React.FC = () => {
                 <p className="text-xs font-bold text-neutral-500 uppercase tracking-wider">Followers Base</p>
               </div>
               <div>
-                <p className="text-3xl font-black text-black">1,000+</p>
-                <p className="text-xs font-bold text-neutral-500 uppercase tracking-wider">Events Covered</p>
+                <p className="text-2xl sm:text-3xl font-black text-black">Over 1,000</p>
+                <p className="text-[11px] font-bold text-neutral-500 uppercase tracking-wider">Event covered across America, United Kingdom & Nigeria</p>
               </div>
             </div>
           </div>

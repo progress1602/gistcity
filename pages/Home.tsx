@@ -22,7 +22,7 @@ const Home: React.FC = () => {
           {[
             { val: "8+ Years", lab: "Media Exp. Since 2018" },
             { val: "200K+", lab: "Followers Across Platforms" },
-            { val: "1,000+", lab: "Successful Events Covered" },
+            { val: "Over 1,000", lab: "Event covered across America, United Kingdom & Nigeria" },
             { val: "100+", lab: "Celebrities & VIPs Interviewed" },
             { val: "Best TV '20", lab: "Cultural Channel Award" }
           ].map((stat, i) => (

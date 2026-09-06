@@ -27,10 +27,10 @@ const Hero: React.FC = () => {
             <span>Digital Media & Communications Platform</span>
           </div>
 
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-black leading-[1.04] tracking-tight text-white uppercase">
-            AMPLIFYING <br />
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.06] tracking-tight text-white uppercase">
+            America Leading <br />
             <span className="text-yellow-400">
-              STORIES & BRANDS.
+              Online Social Media Blog
             </span>
           </h1>
 
@@ -80,8 +80,8 @@ const Hero: React.FC = () => {
               <p className="text-[11px] font-bold uppercase tracking-wider text-neutral-400">Followers Across Platforms</p>
             </div>
             <div>
-              <p className="text-2xl sm:text-3xl font-black text-white">1,000+</p>
-              <p className="text-[11px] font-bold uppercase tracking-wider text-neutral-400">Events Covered</p>
+              <p className="text-2xl sm:text-3xl font-black text-white">Over 1,000</p>
+              <p className="text-[11px] font-bold uppercase tracking-wider text-neutral-400">Event covered across America, United Kingdom & Nigeria</p>
             </div>
           </div>
         </div>
@@ -120,7 +120,7 @@ const Hero: React.FC = () => {
                   Event Spotlight
                 </span>
                 <p className="text-white font-bold text-sm sm:text-base mt-1.5 leading-snug">
-                  Over 1,000 Events Covered Across Lagos, London & New York
+                  Over 1,000 event covered across America, United Kingdom & Nigeria
                 </p>
               </div>
             </div>

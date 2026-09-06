@@ -36,9 +36,9 @@ const About: React.FC = () => {
       icon: <TrendingUp className="text-yellow-400" size={24} />
     },
     {
-      text: 'Over 1,000 successful events covered, delivering extensive media visibility and digital publicity.',
-      highlight: '1,000+',
-      label: 'Events Covered',
+      text: 'Over 1,000 event covered across America, United Kingdom & Nigeria, delivering extensive media visibility and digital publicity.',
+      highlight: 'Over 1,000',
+      label: 'Event covered across America, United Kingdom & Nigeria',
       icon: <Sparkles className="text-yellow-400" size={24} />
     },
     {

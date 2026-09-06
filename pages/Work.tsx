@@ -9,7 +9,7 @@ const Work: React.FC = () => {
       <div className="max-w-7xl mx-auto px-6 py-20 text-center relative">
         <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 text-xs font-black uppercase tracking-widest mb-6">
           <Radio size={14} className="animate-pulse" />
-          <span>Complete Media Archive • 1,000+ Events Covered</span>
+          <span>Complete Media Archive • Over 1,000 event covered across America, United Kingdom & Nigeria</span>
         </div>
 
         <h1 className="text-5xl sm:text-7xl md:text-9xl font-black tracking-tight mb-8 leading-none uppercase">
