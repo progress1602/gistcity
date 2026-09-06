@@ -10,6 +10,7 @@ import ContactForm from '../components/ContactForm';
 import { UpcomingEventsSection } from '../components/UpcomingEventsSection';
 import { TESTIMONIALS } from '../data';
 import { Award, Globe, Users, Calendar, Sparkles, Radio, ArrowRight, Building2, MapPin } from 'lucide-react';
+import { AnimatedCounter } from '../components/AnimatedCounter';
 
 const Home: React.FC = () => {
   return (
@@ -17,22 +18,52 @@ const Home: React.FC = () => {
       <Hero />
       
       {/* Credibility Strip */}
-      <section className="bg-yellow-400 py-10 text-black border-y border-yellow-500 shadow-xl">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-5 gap-6 items-center">
-          {[
-            { val: "8+ Years", lab: "Media Exp. Since 2018" },
-            { val: "200K+", lab: "Followers Across Platforms" },
-            { val: "Over 1,000", lab: "Event covered across America, United Kingdom & Nigeria" },
-            { val: "100+", lab: "Celebrities & VIPs Interviewed" },
-            { val: "Best TV '20", lab: "Cultural Channel Award" }
-          ].map((stat, i) => (
-            <div key={i} className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3 text-black">
-              <span className="text-2xl lg:text-3xl font-black tracking-tight">{stat.val}</span>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-black/75 leading-tight">
-                {stat.lab}
-              </span>
-            </div>
-          ))}
+      <section className="bg-yellow-400 py-8 sm:py-10 text-black border-y border-yellow-500 shadow-xl">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-5 items-start">
+          <div className="flex flex-col justify-start text-black">
+            <span className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl font-black tracking-tight whitespace-nowrap">
+              <AnimatedCounter end={8} suffix="+" /> <span className="text-sm sm:text-base font-bold">Years</span>
+            </span>
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-black/80 leading-tight mt-1">
+              Media Exp. Since 2018
+            </span>
+          </div>
+
+          <div className="flex flex-col justify-start text-black">
+            <span className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl font-black tracking-tight whitespace-nowrap">
+              <AnimatedCounter end={200} suffix="K+" />
+            </span>
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-black/80 leading-tight mt-1">
+              Followers Across Platforms
+            </span>
+          </div>
+
+          <div className="flex flex-col justify-start text-black col-span-2 md:col-span-1">
+            <span className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl font-black tracking-tight whitespace-nowrap inline-block">
+              <AnimatedCounter end={1000} prefix="Over " />
+            </span>
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-black/80 leading-snug mt-1">
+              Event covered across America, United Kingdom & Nigeria
+            </span>
+          </div>
+
+          <div className="flex flex-col justify-start text-black">
+            <span className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl font-black tracking-tight whitespace-nowrap">
+              <AnimatedCounter end={100} suffix="+" />
+            </span>
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-black/80 leading-tight mt-1">
+              Celebrities & VIPs Interviewed
+            </span>
+          </div>
+
+          <div className="flex flex-col justify-start text-black">
+            <span className="text-2xl sm:text-3xl lg:text-2xl xl:text-3xl font-black tracking-tight whitespace-nowrap">
+              Best TV '20
+            </span>
+            <span className="text-[10px] sm:text-[11px] font-bold uppercase tracking-wider text-black/80 leading-tight mt-1">
+              Cultural Channel Award
+            </span>
+          </div>
         </div>
       </section>
 

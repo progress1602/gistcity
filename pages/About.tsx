@@ -14,18 +14,32 @@ import {
   Compass, 
   ArrowRight 
 } from 'lucide-react';
+import { AnimatedCounter } from '../components/AnimatedCounter';
 
 const About: React.FC = () => {
-  const trackRecordItems = [
+  const trackRecordItems: {
+    text: string;
+    highlight: React.ReactNode;
+    label: string;
+    icon: React.ReactNode;
+  }[] = [
     {
       text: 'Over 8 years of operation and media experience since 2018.',
-      highlight: '8+ Years',
+      highlight: (
+        <span className="whitespace-nowrap">
+          <AnimatedCounter end={8} suffix="+" /> Years
+        </span>
+      ),
       label: 'Since 2018',
       icon: <Calendar className="text-yellow-400" size={24} />
     },
     {
       text: 'A growing community of over 200,000 followers across multiple social media platforms.',
-      highlight: '200,000+',
+      highlight: (
+        <span className="whitespace-nowrap">
+          <AnimatedCounter end={200000} suffix="+" />
+        </span>
+      ),
       label: 'Community Followers',
       icon: <Users className="text-yellow-400" size={24} />
     },
@@ -37,13 +51,21 @@ const About: React.FC = () => {
     },
     {
       text: 'Over 1,000 event covered across America, United Kingdom & Nigeria, delivering extensive media visibility and digital publicity.',
-      highlight: 'Over 1,000',
+      highlight: (
+        <span className="whitespace-nowrap">
+          <AnimatedCounter end={1000} prefix="Over " />
+        </span>
+      ),
       label: 'Event covered across America, United Kingdom & Nigeria',
       icon: <Sparkles className="text-yellow-400" size={24} />
     },
     {
       text: 'Conducted interviews and featured over 100 celebrities, public figures, entrepreneurs, and notable personalities.',
-      highlight: '100+',
+      highlight: (
+        <span className="whitespace-nowrap">
+          <AnimatedCounter end={100} suffix="+" />
+        </span>
+      ),
       label: 'Celebrity & VIP Features',
       icon: <Mic className="text-yellow-400" size={24} />
     },

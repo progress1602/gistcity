@@ -14,7 +14,7 @@ export const UpcomingEventsSection: React.FC<UpcomingEventsProps> = ({ isLanding
   const [activeModalEvent, setActiveModalEvent] = useState<EventPost | null>(null);
   const [rsvpSubmitted, setRsvpSubmitted] = useState(false);
 
-  const categories = ['All', 'Concert & Festival', 'Business & Tech', 'Awards & Gala', 'Culture & Heritage', 'Lifestyle & Fashion', 'Community & Dialogue'];
+  const categories = ['All', ...Array.from(new Set(UPCOMING_EVENTS.map(e => e.category)))];
 
   const filteredEvents = selectedCategory === 'All'
     ? UPCOMING_EVENTS

@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Search, Compass, Video, Share2, Award } from 'lucide-react';
+import { AnimatedCounter } from './AnimatedCounter';
 
 const Strategy: React.FC = () => {
   const steps = [
@@ -28,15 +29,21 @@ const Strategy: React.FC = () => {
             </p>
             <div className="pt-8 grid grid-cols-3 gap-6 border-t border-neutral-200">
               <div>
-                <p className="text-3xl font-black text-black">8+ Yrs</p>
+                <p className="text-3xl font-black text-black whitespace-nowrap">
+                  <AnimatedCounter end={8} suffix="+" /> <span className="text-base font-bold">Yrs</span>
+                </p>
                 <p className="text-xs font-bold text-neutral-500 uppercase tracking-wider">Media Track Record</p>
               </div>
               <div>
-                <p className="text-3xl font-black text-black">200K+</p>
+                <p className="text-3xl font-black text-black whitespace-nowrap">
+                  <AnimatedCounter end={200} suffix="K+" />
+                </p>
                 <p className="text-xs font-bold text-neutral-500 uppercase tracking-wider">Followers Base</p>
               </div>
               <div>
-                <p className="text-2xl sm:text-3xl font-black text-black">Over 1,000</p>
+                <p className="text-2xl sm:text-3xl font-black text-black whitespace-nowrap">
+                  <AnimatedCounter end={1000} prefix="Over " />
+                </p>
                 <p className="text-[11px] font-bold text-neutral-500 uppercase tracking-wider">Event covered across America, United Kingdom & Nigeria</p>
               </div>
             </div>

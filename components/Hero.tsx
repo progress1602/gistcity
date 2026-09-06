@@ -2,6 +2,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, Globe, Award, Sparkles, TrendingUp, Users } from 'lucide-react';
+import { AnimatedCounter } from './AnimatedCounter';
 
 const Hero: React.FC = () => {
   return (
@@ -72,15 +73,21 @@ const Hero: React.FC = () => {
           {/* Key Stat Badges */}
           <div className="pt-4 grid grid-cols-3 gap-4 border-t border-yellow-400/15">
             <div>
-              <p className="text-2xl sm:text-3xl font-black text-white">8+ Years</p>
+              <p className="text-2xl sm:text-3xl font-black text-white whitespace-nowrap">
+                <AnimatedCounter end={8} suffix="+" /> <span className="text-base sm:text-lg font-bold">Years</span>
+              </p>
               <p className="text-[11px] font-bold uppercase tracking-wider text-neutral-400">Media Exp. Since 2018</p>
             </div>
             <div>
-              <p className="text-2xl sm:text-3xl font-black text-yellow-400">200K+</p>
+              <p className="text-2xl sm:text-3xl font-black text-yellow-400 whitespace-nowrap">
+                <AnimatedCounter end={200} suffix="K+" />
+              </p>
               <p className="text-[11px] font-bold uppercase tracking-wider text-neutral-400">Followers Across Platforms</p>
             </div>
             <div>
-              <p className="text-2xl sm:text-3xl font-black text-white">Over 1,000</p>
+              <p className="text-2xl sm:text-3xl font-black text-white whitespace-nowrap">
+                <AnimatedCounter end={1000} prefix="Over " />
+              </p>
               <p className="text-[11px] font-bold uppercase tracking-wider text-neutral-400">Event covered across America, United Kingdom & Nigeria</p>
             </div>
           </div>
@@ -120,7 +127,7 @@ const Hero: React.FC = () => {
                   Event Spotlight
                 </span>
                 <p className="text-white font-bold text-sm sm:text-base mt-1.5 leading-snug">
-                  Over 1,000 event covered across America, United Kingdom & Nigeria
+                  <span className="whitespace-nowrap">Over 1,000</span> event covered across America, United Kingdom & Nigeria
                 </p>
               </div>
             </div>
