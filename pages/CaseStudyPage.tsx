@@ -1,16 +1,18 @@
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { CASE_STUDIES } from '../data';
-import { ArrowLeft, ExternalLink } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Play, Video, Share2 } from 'lucide-react';
 
 const CaseStudyPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
   const project = CASE_STUDIES.find(p => p.id === id);
 
   if (!project) return (
-    <div className="min-h-screen bg-black text-white flex items-center justify-center">
-      <h1 className="text-4xl font-bold">Project not found.</h1>
+    <div className="min-h-screen bg-black text-white flex flex-col items-center justify-center gap-4">
+      <h1 className="text-4xl font-bold">Story not found.</h1>
+      <Link to="/work" className="text-yellow-400 font-bold uppercase text-xs tracking-widest hover:underline">
+        ← Back to All Coverage
+      </Link>
     </div>
   );
 
@@ -18,110 +20,219 @@ const CaseStudyPage: React.FC = () => {
     <div className="pt-24 bg-black text-white min-h-screen selection:bg-yellow-400 selection:text-black">
       <div className="max-w-7xl mx-auto px-6">
         {/* Navigation */}
-        <Link to="/work" className="inline-flex items-center gap-2 text-neutral-400 hover:text-yellow-400 transition-colors mb-12 group font-bold text-xs uppercase tracking-widest">
-          <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" /> Back to Media Coverage
-        </Link>
+        <div className="flex items-center justify-between mb-12">
+          <Link to="/work" className="inline-flex items-center gap-2 text-neutral-400 hover:text-yellow-400 transition-colors group font-bold text-xs uppercase tracking-widest">
+            <ArrowLeft size={18} className="group-hover:-translate-x-1 transition-transform" /> Back to Media Coverage
+          </Link>
 
-        {/* Hero */}
-        <div className="grid lg:grid-cols-2 gap-16 mb-24">
-          <div className="space-y-8">
-            <div className="flex flex-wrap gap-2">
-              {project.tags.map(t => (
-                <span key={t} className="text-xs font-black uppercase tracking-widest px-3.5 py-1 bg-yellow-400/10 border border-yellow-400/30 rounded-full text-yellow-400">
-                  {t}
+          {project.videoUrl && (
+            <a
+              href={project.videoUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-yellow-400 hover:bg-yellow-300 text-black text-xs font-black uppercase tracking-widest transition-transform hover:scale-105 shadow-lg shadow-yellow-400/20"
+            >
+              <Play size={14} className="fill-black" />
+              <span>{project.videoPlatform === 'youtube' ? 'Watch on YouTube' : 'Watch on Instagram'}</span>
+              <ExternalLink size={13} />
+            </a>
+          )}
+        </div>
+
+        {/* Hero Header */}
+        <div className="grid lg:grid-cols-12 gap-12 mb-16 items-start">
+          <div className="lg:col-span-8 space-y-6">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="text-xs font-black uppercase tracking-widest px-3.5 py-1 bg-yellow-400 text-black rounded-full shadow-md">
+                {project.category}
+              </span>
+              {project.videoPlatform && (
+                <span className="text-xs font-bold uppercase tracking-wider px-3.5 py-1 bg-neutral-900 border border-white/20 rounded-full text-neutral-300 flex items-center gap-1.5">
+                  <span className={`w-2 h-2 rounded-full ${project.videoPlatform === 'youtube' ? 'bg-red-500 animate-pulse' : 'bg-pink-500 animate-pulse'}`} />
+                  {project.videoPlatform === 'youtube' ? 'YouTube Broadcast' : 'Instagram Reel Coverage'}
                 </span>
-              ))}
+              )}
             </div>
-            <h1 className="text-6xl md:text-8xl font-black tracking-tighter leading-none uppercase">{project.title}</h1>
-            <div className="grid grid-cols-2 gap-8 pt-8 border-t border-yellow-400/15">
-               <div>
-                 <p className="text-[10px] font-black text-neutral-400 uppercase tracking-widest mb-2">Client / Partner</p>
-                 <p className="text-xl font-bold text-white">{project.client}</p>
-               </div>
-               <div>
-                 <p className="text-[10px] font-black text-neutral-400 uppercase tracking-widest mb-2">Category</p>
-                 <p className="text-xl font-bold text-yellow-400">{project.industry}</p>
-               </div>
+
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl font-black tracking-tight leading-tight uppercase">
+              {project.title}
+            </h1>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-6 pt-6 border-t border-yellow-400/15">
+              <div>
+                <p className="text-[10px] font-black text-neutral-400 uppercase tracking-widest mb-1">Client / Partner</p>
+                <p className="text-lg font-bold text-white">{project.client}</p>
+              </div>
+              <div>
+                <p className="text-[10px] font-black text-neutral-400 uppercase tracking-widest mb-1">Focus Area</p>
+                <p className="text-lg font-bold text-yellow-400">{project.industry}</p>
+              </div>
+              <div className="col-span-2 sm:col-span-1">
+                <p className="text-[10px] font-black text-neutral-400 uppercase tracking-widest mb-1">Verified Coverage</p>
+                <p className="text-lg font-bold text-emerald-400 flex items-center gap-1.5">
+                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                  GistCity Media
+                </p>
+              </div>
             </div>
           </div>
-          <div className="flex flex-col justify-end">
-             <p className="text-xl text-neutral-300 leading-relaxed border-l-4 border-yellow-400 pl-8 font-medium">
-                {project.problem}
-             </p>
+
+          <div className="lg:col-span-4 bg-neutral-950 p-8 rounded-3xl border border-yellow-400/20 space-y-4">
+            <p className="text-xs font-black text-yellow-400 uppercase tracking-widest">
+              Editorial Objective
+            </p>
+            <p className="text-base text-neutral-300 leading-relaxed font-medium">
+              {project.problem}
+            </p>
+            {project.videoUrl && (
+              <div className="pt-4 border-t border-white/10">
+                <a
+                  href={project.videoUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full py-3.5 px-4 rounded-full bg-yellow-400 hover:bg-yellow-300 text-black text-xs font-black uppercase tracking-wider flex items-center justify-center gap-2 transition-colors shadow-lg"
+                >
+                  <Play size={14} className="fill-black" />
+                  <span>Launch Video Link</span>
+                  <ExternalLink size={13} />
+                </a>
+              </div>
+            )}
           </div>
         </div>
 
-        {/* Hero Visual */}
-        <div className="rounded-[3rem] overflow-hidden mb-24 aspect-[21/9] border border-yellow-400/20 shadow-2xl">
-           <img src={project.mainImage} alt={project.title} className="w-full h-full object-cover" />
+        {/* Video Player or Extracted Hero Visual */}
+        <div className="mb-20">
+          {project.videoPlatform === 'youtube' ? (
+            <div className="rounded-[2.5rem] overflow-hidden border border-yellow-400/25 shadow-2xl aspect-[16/9] max-w-5xl mx-auto bg-black">
+              <iframe
+                src="https://www.youtube-nocookie.com/embed/gyV4iihHT80?rel=0"
+                title={project.title}
+                className="w-full h-full"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              />
+            </div>
+          ) : (
+            <div className="relative rounded-[2.5rem] overflow-hidden border border-yellow-400/20 shadow-2xl aspect-[16/9] max-w-5xl mx-auto bg-neutral-950 group">
+              <img 
+                src={project.mainImage} 
+                alt={project.title} 
+                className="w-full h-full object-cover" 
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent" />
+
+              {/* Direct Play Overlay for Instagram Reels */}
+              {project.videoUrl && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                  <a
+                    href={project.videoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex flex-col items-center gap-3 p-6 rounded-3xl bg-black/80 backdrop-blur-md border border-yellow-400/50 hover:border-yellow-400 hover:scale-105 transition-all shadow-2xl text-center group/center"
+                  >
+                    <div className="w-20 h-20 rounded-full bg-yellow-400 text-black flex items-center justify-center shadow-2xl shadow-yellow-400/50 group-hover/center:bg-yellow-300 transition-colors">
+                      <Play size={34} className="fill-black text-black ml-1" />
+                    </div>
+                    <span className="text-sm font-black text-yellow-400 uppercase tracking-widest flex items-center gap-1.5">
+                      Watch Reel on Instagram
+                      <ExternalLink size={14} />
+                    </span>
+                    <span className="text-xs text-neutral-400 max-w-xs">
+                      Click to launch the official high-definition video reel
+                    </span>
+                  </a>
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Content Sections */}
         <div className="grid lg:grid-cols-3 gap-16 mb-24">
-           <div className="lg:col-span-2 space-y-12">
-              <section className="space-y-6">
-                <h3 className="text-3xl font-black tracking-tight uppercase">The Strategy & Coverage Plan</h3>
-                <p className="text-lg text-neutral-300 leading-relaxed">{project.solution}</p>
-              </section>
+          <div className="lg:col-span-2 space-y-10">
+            <section className="space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 text-xs font-black uppercase tracking-widest">
+                <Video size={13} />
+                <span>On-Site Media Execution</span>
+              </div>
+              <h3 className="text-3xl font-black tracking-tight uppercase">Coverage & Production Details</h3>
+              <p className="text-lg text-neutral-300 leading-relaxed font-medium">
+                {project.solution}
+              </p>
+            </section>
 
-              <div className="grid grid-cols-2 gap-8">
-                 {project.gallery.map((img, i) => (
-                   <img key={i} src={img} alt={`${project.title} screenshot ${i}`} className="rounded-[2rem] border border-yellow-400/15 shadow-xl object-cover h-64 w-full" />
-                 ))}
-              </div>
-           </div>
+            {/* Gallery */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 pt-4">
+              {project.gallery.map((img, i) => (
+                <div key={i} className="rounded-3xl overflow-hidden border border-yellow-400/15 shadow-xl h-72 bg-neutral-950">
+                  <img 
+                    src={img} 
+                    alt={`${project.title} gallery visual ${i}`} 
+                    className="w-full h-full object-cover hover:scale-105 transition-transform duration-500" 
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
 
-           <aside className="space-y-12">
-              <div className="bg-neutral-950 p-10 rounded-[2.5rem] border border-yellow-400/20 shadow-xl">
-                 <h4 className="text-xs font-black uppercase tracking-widest text-yellow-400 mb-8">Key Media Results</h4>
-                 <ul className="space-y-6">
-                    {project.results.map((res, i) => (
-                      <li key={i} className="flex items-start gap-4">
-                        <span className="mt-1.5 w-2 h-2 rounded-full bg-yellow-400 shrink-0" />
-                        <span className="font-bold text-base text-white">{res}</span>
-                      </li>
-                    ))}
-                 </ul>
-              </div>
+          <aside className="space-y-8">
+            <div className="bg-neutral-950 p-8 rounded-[2.5rem] border border-yellow-400/20 shadow-xl space-y-6">
+              <h4 className="text-xs font-black uppercase tracking-widest text-yellow-400">
+                Key Deliverables & Reach
+              </h4>
+              <ul className="space-y-4">
+                {project.results.map((res, i) => (
+                  <li key={i} className="flex items-start gap-3">
+                    <span className="mt-1.5 w-2 h-2 rounded-full bg-yellow-400 shrink-0" />
+                    <span className="font-bold text-sm text-white">{res}</span>
+                  </li>
+                ))}
+              </ul>
 
-              <div className="space-y-4">
-                 <h4 className="text-xs font-black uppercase tracking-widest text-neutral-400">Share Story</h4>
-                 <div className="flex gap-3">
-                    {['X', 'LinkedIn', 'Copy Link'].map(s => (
-                      <button key={s} className="px-5 py-2.5 bg-neutral-900 hover:bg-yellow-400 hover:text-black transition-all rounded-full text-xs font-black uppercase tracking-wider border border-white/10 cursor-pointer">
-                        {s}
-                      </button>
-                    ))}
-                 </div>
-              </div>
-           </aside>
-        </div>
+              {project.videoUrl && (
+                <div className="pt-4 border-t border-white/10">
+                  <a
+                    href={project.videoUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full text-center py-3.5 rounded-full bg-neutral-900 border border-yellow-400/30 hover:border-yellow-400 hover:text-yellow-400 text-white text-xs font-black uppercase tracking-widest transition-all"
+                  >
+                    Open Original Video ↗
+                  </a>
+                </div>
+              )}
+            </div>
 
-        {/* Media Highlights Showcase */}
-        <div className="py-24 border-t border-yellow-400/15">
-           <h2 className="text-4xl font-black tracking-tight mb-12 uppercase">MEDIA & BROADCAST HIGHLIGHTS</h2>
-           <div className="grid md:grid-cols-4 gap-4 h-auto md:h-[360px]">
-              <div className="bg-yellow-400 text-black rounded-3xl flex flex-col justify-between p-8 min-h-[200px] shadow-xl">
-                 <span className="text-xs font-black uppercase tracking-widest text-black/70">Broadcast Channel</span>
-                 <p className="font-black text-2xl">Digital Media & Editorial Feature</p>
-                 <span className="text-xs font-bold text-black/80">Nigeria • USA • UK</span>
+            <div className="p-8 rounded-[2.5rem] bg-neutral-950 border border-white/10 space-y-4">
+              <h4 className="text-xs font-black uppercase tracking-widest text-neutral-400">
+                Coverage Tags
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {project.tags.map(t => (
+                  <span key={t} className="px-3 py-1 rounded-full bg-black border border-white/10 text-xs font-bold text-neutral-300">
+                    #{t}
+                  </span>
+                ))}
               </div>
-              <div className="bg-neutral-900 text-white rounded-3xl flex flex-col justify-between p-8 min-h-[200px] border border-yellow-400/20">
-                 <span className="text-xs font-black uppercase tracking-widest text-yellow-400">Audience Impact</span>
-                 <p className="font-black text-2xl">200K+ Community & Global Syndication</p>
-                 <span className="text-xs font-bold text-neutral-400">Cross-Platform Distribution</span>
-              </div>
-              <div className="md:col-span-2 bg-neutral-900 rounded-3xl overflow-hidden min-h-[240px] border border-white/10">
-                 <img src={project.mainImage} alt={project.title} className="w-full h-full object-cover" />
-              </div>
-           </div>
+            </div>
+          </aside>
         </div>
 
         {/* Footer Navigation */}
-        <div className="py-24 border-t border-yellow-400/15 flex justify-between items-center">
-           <Link to="/work" className="text-xs font-black uppercase tracking-widest text-neutral-400 hover:text-yellow-400 transition-colors">← All Media Coverage</Link>
-           <Link to="/contact" className="text-lg md:text-xl font-black tracking-tight text-yellow-400 hover:text-white transition-colors uppercase">GET YOUR STORY FEATURED</Link>
-           <Link to="/" className="text-xs font-black uppercase tracking-widest text-neutral-400 hover:text-yellow-400 transition-colors">Home →</Link>
+        <div className="py-16 border-t border-yellow-400/15 flex flex-wrap justify-between items-center gap-4">
+          <Link to="/work" className="text-xs font-black uppercase tracking-widest text-neutral-400 hover:text-yellow-400 transition-colors">
+            ← All Verified Coverage
+          </Link>
+          <Link 
+            to="/contact" 
+            className="px-8 py-3.5 rounded-full bg-yellow-400 hover:bg-yellow-300 text-black text-xs font-black tracking-wider uppercase transition-transform hover:scale-105"
+          >
+            Submit Your Event For Coverage
+          </Link>
+          <Link to="/" className="text-xs font-black uppercase tracking-widest text-neutral-400 hover:text-yellow-400 transition-colors">
+            Home →
+          </Link>
         </div>
       </div>
     </div>

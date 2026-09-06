@@ -11,6 +11,8 @@ export interface CaseStudy {
   gallery: string[];
   results: string[];
   tags: string[];
+  videoUrl?: string;
+  videoPlatform?: 'instagram' | 'youtube' | 'video';
 }
 
 export interface Service {

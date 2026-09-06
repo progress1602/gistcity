@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Instagram, Twitter, Linkedin, Youtube, Award, Mail, MapPin } from 'lucide-react';
+import { Instagram, Twitter, Linkedin, Youtube, Award, Mail, MapPin, Phone } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
 
           {/* Global Presence & Contact */}
           <div className="md:col-span-3 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-widest text-yellow-400">Global Presence</h4>
+            <h4 className="text-xs font-bold uppercase tracking-widest text-yellow-400">Global Presence & Contact</h4>
             <div className="space-y-3 text-sm text-neutral-400">
               <div className="flex items-start gap-2.5">
                 <MapPin size={16} className="text-yellow-400 mt-1 shrink-0" />
@@ -81,7 +81,18 @@ const Footer: React.FC = () => {
               </div>
               <div className="flex items-start gap-2.5">
                 <Mail size={16} className="text-yellow-400 mt-1 shrink-0" />
-                <span>editorial@gistcity.com</span>
+                <a href="mailto:amasapokima@gmail.com" className="hover:text-yellow-400 transition-colors break-all">
+                  amasapokima@gmail.com
+                </a>
+              </div>
+              <div className="flex items-start gap-2.5">
+                <Phone size={16} className="text-yellow-400 mt-1 shrink-0" />
+                <div>
+                  <p className="text-[10px] uppercase font-black tracking-wider text-yellow-400">WhatsApp & Call Line</p>
+                  <a href="https://wa.me/2348141577473" target="_blank" rel="noopener noreferrer" className="hover:text-yellow-400 transition-colors font-bold text-white block">
+                    +234 814 157 7473
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -100,7 +111,7 @@ const Footer: React.FC = () => {
           <p>© {new Date().getFullYear()} GISTCITY MEDIA PLATFORM. ALL RIGHTS RESERVED.</p>
           <div className="flex gap-6">
             <span className="text-neutral-400">8+ Years of Media Experience (Est. 2018)</span>
-            <span className="text-purple-400">200K+ Global Community</span>
+            <span className="text-yellow-400">200K+ Global Community</span>
           </div>
         </div>
       </div>

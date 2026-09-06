@@ -110,7 +110,7 @@ const Hero: React.FC = () => {
             {/* Featured Image */}
             <div className="relative rounded-2xl overflow-hidden aspect-[16/10] border border-white/10 group-hover:border-yellow-400/40 transition-colors">
               <img 
-                src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?q=80&w=1000&auto=format&fit=crop" 
+                src="https://res.cloudinary.com/progresshenry/image/upload/v1788703315/gist.jpg_u76qzj.jpg" 
                 alt="GistCity Global Event Coverage" 
                 className="w-full h-full object-cover group-hover:scale-105 transition-all duration-700"
               />

@@ -67,7 +67,7 @@ export const EventsPage: React.FC = () => {
               Submit Your Event For Coverage
             </Link>
             <a
-              href="mailto:editorial@gistcity.com"
+              href="mailto:amasapokima@gmail.com"
               className="px-8 py-4 rounded-full border border-white/20 text-white hover:border-yellow-400 hover:text-yellow-400 transition-all text-xs font-black uppercase tracking-widest"
             >
               Email Editorial Desk

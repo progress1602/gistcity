@@ -23,15 +23,30 @@ const ContactForm: React.FC = () => {
             </p>
 
             <div className="space-y-6 pt-6">
-               <div className="p-4 rounded-2xl bg-neutral-950 border border-yellow-400/15">
-                  <p className="text-xs font-black text-yellow-400 uppercase tracking-widest mb-1">Editorial Desk</p>
-                  <p className="text-xl font-bold text-white">editorial@gistcity.com</p>
+               <div className="p-5 rounded-2xl bg-neutral-950 border border-yellow-400/15">
+                  <p className="text-xs font-black text-yellow-400 uppercase tracking-widest mb-1">Editorial & Media Desk</p>
+                  <a href="mailto:amasapokima@gmail.com" className="text-xl font-bold text-white hover:text-yellow-400 transition-colors break-all block">
+                    amasapokima@gmail.com
+                  </a>
                </div>
-               <div className="p-4 rounded-2xl bg-neutral-950 border border-yellow-400/15">
-                  <p className="text-xs font-black text-yellow-400 uppercase tracking-widest mb-1">Partnerships & Advertising</p>
-                  <p className="text-xl font-bold text-white">partnerships@gistcity.com</p>
+               <div className="p-5 rounded-2xl bg-neutral-950 border border-yellow-400/15">
+                  <p className="text-xs font-black text-yellow-400 uppercase tracking-widest mb-1">WhatsApp and Call Line</p>
+                  <div className="flex flex-wrap items-center gap-3">
+                    <a href="tel:+2348141577473" className="text-xl font-bold text-white hover:text-yellow-400 transition-colors">
+                      +234 814 157 7473
+                    </a>
+                    <a 
+                      href="https://wa.me/2348141577473" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="px-3 py-1 rounded-full bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 text-xs font-black uppercase tracking-wider hover:bg-emerald-500/30 transition-colors inline-flex items-center gap-1.5"
+                    >
+                      <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+                      Chat on WhatsApp
+                    </a>
+                  </div>
                </div>
-               <div className="p-4 rounded-2xl bg-neutral-950 border border-yellow-400/15">
+               <div className="p-5 rounded-2xl bg-neutral-950 border border-yellow-400/15">
                   <p className="text-xs font-black text-yellow-400 uppercase tracking-widest mb-1">Coverage Hubs</p>
                   <p className="text-xl font-bold text-white">America • Nigeria • United Kingdom</p>
                </div>

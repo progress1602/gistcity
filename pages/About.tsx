@@ -243,7 +243,7 @@ const About: React.FC = () => {
               </p>
             </div>
             <div className="space-y-2 pt-6 md:pt-0 md:pl-6">
-              <span className="text-3xl">🇬🇧</span>
+              <span className="text-3xl">uk</span>
               <h4 className="text-xl font-black text-yellow-400">United Kingdom</h4>
               <p className="text-sm text-neutral-400 max-w-xs mx-auto">
                 London-based coverage amplifying lifestyle, cultural showcases, and international spotlight features.
