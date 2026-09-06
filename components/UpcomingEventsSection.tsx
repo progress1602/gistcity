@@ -95,12 +95,12 @@ export const UpcomingEventsSection: React.FC<UpcomingEventsProps> = ({ isLanding
         </div>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap gap-2.5 mb-12">
+        <div className="flex flex-nowrap sm:flex-wrap overflow-x-auto no-scrollbar gap-2 pb-2 sm:pb-0 mb-8 sm:mb-12 max-w-full">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all border ${
+              className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all border whitespace-nowrap shrink-0 ${
                 selectedCategory === cat
                   ? 'bg-yellow-400 border-yellow-400 text-black shadow-lg shadow-yellow-400/20'
                   : 'bg-neutral-950 border-white/10 text-neutral-400 hover:border-yellow-400/40 hover:text-white'
@@ -112,14 +112,14 @@ export const UpcomingEventsSection: React.FC<UpcomingEventsProps> = ({ isLanding
         </div>
 
         {/* Events Grid / Classic Editorial Layout */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           {displayedEvents.map((evt) => (
             <article
               key={evt.id}
-              className="group relative bg-neutral-950 border border-yellow-400/15 rounded-[2.5rem] overflow-hidden hover:border-yellow-400/60 transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-400/10 flex flex-col justify-between"
+              className="group relative bg-neutral-950 border border-yellow-400/15 rounded-3xl sm:rounded-[2.5rem] overflow-hidden hover:border-yellow-400/60 transition-all duration-300 hover:shadow-2xl hover:shadow-yellow-400/10 flex flex-col justify-between"
             >
               {/* Event Image Banner with Overlay */}
-              <div className="relative h-64 sm:h-72 overflow-hidden">
+              <div className="relative h-60 sm:h-72 overflow-hidden">
                 <img
                   src={evt.image}
                   alt={evt.title}
@@ -128,11 +128,11 @@ export const UpcomingEventsSection: React.FC<UpcomingEventsProps> = ({ isLanding
                 <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/40 to-transparent" />
 
                 {/* Calendar Date Block */}
-                <div className="absolute top-6 left-6 bg-black/90 backdrop-blur-md border border-yellow-400/30 rounded-2xl p-3 text-center min-w-[70px] shadow-2xl">
+                <div className="absolute top-4 left-4 sm:top-6 sm:left-6 bg-black/90 backdrop-blur-md border border-yellow-400/30 rounded-2xl p-2.5 sm:p-3 text-center min-w-[65px] sm:min-w-[70px] shadow-2xl">
                   <span className="block text-[10px] font-black uppercase tracking-widest text-yellow-400">
                     {evt.month}
                   </span>
-                  <span className="block text-2xl font-black text-white leading-none mt-0.5">
+                  <span className="block text-xl sm:text-2xl font-black text-white leading-none mt-0.5">
                     {evt.day}
                   </span>
                   <span className="block text-[10px] font-bold text-neutral-400 mt-0.5">
@@ -141,21 +141,21 @@ export const UpcomingEventsSection: React.FC<UpcomingEventsProps> = ({ isLanding
                 </div>
 
                 {/* Media Accreditation & Category Badges */}
-                <div className="absolute top-6 right-6 flex flex-col items-end gap-2">
-                  <span className="px-3.5 py-1.5 rounded-full bg-yellow-400 text-black text-[10px] font-black uppercase tracking-wider shadow-lg">
+                <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex flex-col items-end gap-1.5 sm:gap-2">
+                  <span className="px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-yellow-400 text-black text-[9px] sm:text-[10px] font-black uppercase tracking-wider shadow-lg">
                     {evt.mediaRole}
                   </span>
-                  <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-neutral-300 text-[10px] font-bold uppercase tracking-wider">
+                  <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/10 text-neutral-300 text-[9px] sm:text-[10px] font-bold uppercase tracking-wider">
                     {evt.category}
                   </span>
                 </div>
               </div>
 
               {/* Event Details Content */}
-              <div className="p-8 sm:p-10 flex-1 flex flex-col justify-between space-y-6">
+              <div className="p-5 sm:p-8 md:p-10 flex-1 flex flex-col justify-between space-y-5 sm:space-y-6">
                 <div className="space-y-4">
                   {/* Meta Bar */}
-                  <div className="flex flex-wrap items-center gap-y-2 gap-x-5 text-xs text-neutral-400 border-b border-white/5 pb-4">
+                  <div className="flex flex-wrap items-center gap-y-2 gap-x-4 sm:gap-x-5 text-xs text-neutral-400 border-b border-white/5 pb-4">
                     <div className="flex items-center gap-1.5 text-yellow-400 font-semibold">
                       <MapPin size={14} />
                       <span>{evt.location}</span>
@@ -170,15 +170,15 @@ export const UpcomingEventsSection: React.FC<UpcomingEventsProps> = ({ isLanding
                     </div>
                   </div>
 
-                  <h3 className="text-2xl sm:text-3xl font-black tracking-tight text-white group-hover:text-yellow-400 transition-colors leading-tight">
+                  <h3 className="text-xl sm:text-2xl md:text-3xl font-black tracking-tight text-white group-hover:text-yellow-400 transition-colors leading-tight">
                     {evt.title}
                   </h3>
 
-                  <p className="text-neutral-400 text-sm leading-relaxed">
+                  <p className="text-neutral-400 text-xs sm:text-sm leading-relaxed">
                     {evt.summary}
                   </p>
 
-                  <div className="bg-black/60 rounded-2xl p-4 border border-white/5 space-y-2">
+                  <div className="bg-black/60 rounded-2xl p-3.5 sm:p-4 border border-white/5 space-y-2">
                     <div className="text-xs font-bold text-neutral-300">
                       <span className="text-yellow-400 font-black">Venue: </span>
                       {evt.venue}

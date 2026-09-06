@@ -18,12 +18,12 @@ const TikTokIcon: React.FC<{ className?: string; size?: number }> = ({ className
 
 const Footer: React.FC = () => {
   return (
-    <footer id="main-footer" className="bg-neutral-950 border-t border-white/10 pt-20 pb-12 text-white">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 mb-20">
+    <footer id="main-footer" className="bg-neutral-950 border-t border-white/10 pt-14 sm:pt-20 pb-10 sm:pb-12 text-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-12 gap-8 sm:gap-10 md:gap-12 mb-12 sm:mb-20">
           
           {/* Brand Info - ONLY image logo, no other text writeup next to it */}
-          <div className="md:col-span-5 space-y-6">
+          <div className="sm:col-span-2 md:col-span-5 space-y-5 sm:space-y-6">
             <Link to="/" className="inline-block group" aria-label="GistCity Home">
               <img
                 src="https://res.cloudinary.com/progresshenry/image/upload/v1788683391/gistcity_nn_fgnqpu.png"

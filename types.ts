@@ -52,3 +52,11 @@ export interface EventPost {
   featured?: boolean;
   tags: string[];
 }
+
+export interface BrandPartner {
+  id: string;
+  name: string;
+  logo: string;
+  category?: string;
+  subtitle?: string;
+}

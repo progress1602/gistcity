@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { AnimatedCounter } from '../components/AnimatedCounter';
 import { NigeriaFlag, UnitedStatesFlag, UnitedKingdomFlag } from '../components/CountryFlags';
+import { MajorBrandsCarousel } from '../components/MajorBrandsCarousel';
 
 const About: React.FC = () => {
   const trackRecordItems: {
@@ -247,6 +248,9 @@ const About: React.FC = () => {
             ))}
           </div>
         </div>
+
+        {/* Major Brands Collaboration Strip */}
+        <MajorBrandsCarousel className="mt-20 rounded-[2.5rem] border border-yellow-400/20 shadow-2xl" />
 
         {/* Global Hubs Strip */}
         <div className="mt-20 p-10 md:p-14 rounded-[2.5rem] bg-neutral-950 border border-yellow-400/20 shadow-2xl">

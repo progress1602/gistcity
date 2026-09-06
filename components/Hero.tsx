@@ -28,14 +28,14 @@ const Hero: React.FC = () => {
             <span>Digital Media & Communications Platform</span>
           </div>
 
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.06] tracking-tight text-white uppercase">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-[1.06] tracking-tight text-white uppercase">
             America Leading <br />
             <span className="text-yellow-400">
               Online Social Media Blog
             </span>
           </h1>
 
-          <p className="text-lg sm:text-xl text-neutral-300 max-w-xl leading-relaxed font-medium">
+          <p className="text-base sm:text-xl text-neutral-300 max-w-xl leading-relaxed font-medium">
             GistCity connects impactful stories with diverse audiences across <strong className="text-yellow-400 font-bold">America, Nigeria & United Kingdom</strong> through strategic media coverage, digital storytelling, and online publicity.
           </p>
 
@@ -48,30 +48,30 @@ const Hero: React.FC = () => {
             <span className="px-3 py-1.5 rounded-full bg-neutral-900 border border-white/10 text-neutral-300">Events & Galas</span>
           </div>
 
-          <div className="flex flex-col sm:flex-row gap-4 pt-2">
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-2">
             <Link
               to="/work"
-              className="bg-yellow-400 text-black px-8 py-4 rounded-full font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-yellow-300 transition-all group shadow-xl shadow-yellow-400/20 hover:scale-105"
+              className="bg-yellow-400 text-black px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-black text-xs uppercase tracking-widest flex items-center justify-center gap-2 hover:bg-yellow-300 transition-all group shadow-xl shadow-yellow-400/20 hover:scale-105"
             >
               <span>Explore Media Coverage</span>
               <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
             </Link>
             <Link
               to="/events"
-              className="bg-neutral-900/90 backdrop-blur-md border border-yellow-400/30 text-yellow-400 px-8 py-4 rounded-full font-black text-xs uppercase tracking-widest hover:bg-yellow-400 hover:text-black transition-all flex items-center justify-center gap-2 shadow-lg"
+              className="bg-neutral-900/90 backdrop-blur-md border border-yellow-400/30 text-yellow-400 px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-black text-xs uppercase tracking-widest hover:bg-yellow-400 hover:text-black transition-all flex items-center justify-center gap-2 shadow-lg"
             >
               <span>Upcoming Events</span>
             </Link>
             <Link
               to="/contact"
-              className="bg-neutral-900/90 backdrop-blur-md border border-white/15 text-white px-8 py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center justify-center gap-2"
+              className="bg-neutral-900/90 backdrop-blur-md border border-white/15 text-white px-6 sm:px-8 py-3.5 sm:py-4 rounded-full font-bold text-xs uppercase tracking-widest hover:bg-white hover:text-black transition-all flex items-center justify-center gap-2"
             >
               Get Featured
             </Link>
           </div>
 
-          {/* Key Stat Badges */}
-          <div className="pt-4 grid grid-cols-3 gap-4 border-t border-yellow-400/15">
+          {/* Key Stat Badges - Responsive mobile 2-column grid */}
+          <div className="pt-4 grid grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-6 border-t border-yellow-400/15">
             <div>
               <p className="text-2xl sm:text-3xl font-black text-white whitespace-nowrap">
                 <AnimatedCounter end={8} suffix="+" /> <span className="text-base sm:text-lg font-bold">Years</span>
@@ -84,7 +84,7 @@ const Hero: React.FC = () => {
               </p>
               <p className="text-[11px] font-bold uppercase tracking-wider text-neutral-400">Followers Across Platforms</p>
             </div>
-            <div>
+            <div className="col-span-2 sm:col-span-1 bg-neutral-950/60 sm:bg-transparent p-3 sm:p-0 rounded-xl sm:rounded-none border border-white/5 sm:border-0">
               <p className="text-2xl sm:text-3xl font-black text-white whitespace-nowrap">
                 <AnimatedCounter end={1000} prefix="Over " />
               </p>
@@ -98,7 +98,7 @@ const Hero: React.FC = () => {
           <div className="absolute -top-20 -right-20 w-80 h-80 bg-yellow-400/15 blur-[120px] rounded-full group-hover:bg-yellow-400/25 transition-all duration-700" />
           <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-amber-500/15 blur-[120px] rounded-full group-hover:bg-amber-500/25 transition-all duration-700" />
           
-          <div className="relative z-10 rounded-[3rem] overflow-hidden border border-yellow-400/20 bg-neutral-950 shadow-2xl p-6 sm:p-8 space-y-6">
+          <div className="relative z-10 rounded-3xl sm:rounded-[3rem] overflow-hidden border border-yellow-400/20 bg-neutral-950 shadow-2xl p-5 sm:p-8 space-y-5 sm:space-y-6">
             
             {/* Logo Display Header - ONLY image logo, no text writeup */}
             <div className="flex items-center justify-between border-b border-yellow-400/15 pb-5">

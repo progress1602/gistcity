@@ -209,10 +209,10 @@ const ContactForm: React.FC = () => {
           </div>
 
           {/* Right Column: Interactive Form or Success State */}
-          <div className="bg-neutral-950 p-8 sm:p-10 md:p-12 rounded-[2.5rem] md:rounded-[3rem] border border-yellow-400/25 shadow-2xl relative">
+          <div className="bg-neutral-950 p-5 sm:p-8 md:p-12 rounded-3xl md:rounded-[3rem] border border-yellow-400/25 shadow-2xl relative">
             
             {/* Form Banner Header */}
-            <div className="pb-6 mb-6 border-b border-white/10 flex flex-wrap items-center justify-between gap-3">
+            <div className="pb-5 sm:pb-6 mb-5 sm:mb-6 border-b border-white/10 flex flex-wrap items-center justify-between gap-3">
               <div>
                 <div className="flex items-center gap-2">
                   <span className="text-xs font-black uppercase tracking-wider text-yellow-400">
@@ -234,9 +234,9 @@ const ContactForm: React.FC = () => {
             </div>
 
             {!isSubmitted ? (
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
                 {/* Full Name & Organization */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold uppercase tracking-wider text-neutral-300 flex items-center justify-between">
                       <span>Full Name / Contact Person *</span>
@@ -248,7 +248,7 @@ const ContactForm: React.FC = () => {
                       value={formData.fullName}
                       onChange={handleInputChange}
                       placeholder="e.g. Chief O. Johnson or Jane Smith"
-                      className="w-full bg-black/80 border border-white/15 rounded-2xl p-3.5 focus:border-yellow-400 transition-colors outline-none text-white text-sm"
+                      className="w-full bg-black/80 border border-white/15 rounded-2xl p-3.5 focus:border-yellow-400 transition-colors outline-none text-white text-base sm:text-sm"
                     />
                   </div>
 
@@ -263,13 +263,13 @@ const ContactForm: React.FC = () => {
                       value={formData.organization}
                       onChange={handleInputChange}
                       placeholder="e.g. Abonnema Foundation or Brand X"
-                      className="w-full bg-black/80 border border-white/15 rounded-2xl p-3.5 focus:border-yellow-400 transition-colors outline-none text-white text-sm"
+                      className="w-full bg-black/80 border border-white/15 rounded-2xl p-3.5 focus:border-yellow-400 transition-colors outline-none text-white text-base sm:text-sm"
                     />
                   </div>
                 </div>
 
                 {/* Email Address & WhatsApp Phone Number */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold uppercase tracking-wider text-neutral-300">
                       Email Address *
@@ -281,7 +281,7 @@ const ContactForm: React.FC = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       placeholder="contact@organization.com"
-                      className="w-full bg-black/80 border border-white/15 rounded-2xl p-3.5 focus:border-yellow-400 transition-colors outline-none text-white text-sm"
+                      className="w-full bg-black/80 border border-white/15 rounded-2xl p-3.5 focus:border-yellow-400 transition-colors outline-none text-white text-base sm:text-sm"
                     />
                   </div>
 
@@ -297,13 +297,13 @@ const ContactForm: React.FC = () => {
                       value={formData.phone}
                       onChange={handleInputChange}
                       placeholder="e.g. +1 713-555-0199 or +234..."
-                      className="w-full bg-black/80 border border-white/15 rounded-2xl p-3.5 focus:border-yellow-400 transition-colors outline-none text-white text-sm"
+                      className="w-full bg-black/80 border border-white/15 rounded-2xl p-3.5 focus:border-yellow-400 transition-colors outline-none text-white text-base sm:text-sm"
                     />
                   </div>
                 </div>
 
                 {/* Media Service Needed & Primary Region */}
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
                   <div className="space-y-1.5">
                     <label className="text-xs font-bold uppercase tracking-wider text-neutral-300">
                       Media Service Needed
@@ -312,7 +312,7 @@ const ContactForm: React.FC = () => {
                       name="serviceNeeded"
                       value={formData.serviceNeeded}
                       onChange={handleInputChange}
-                      className="w-full bg-black/80 border border-white/15 rounded-2xl p-3.5 focus:border-yellow-400 transition-colors outline-none text-white text-sm appearance-none cursor-pointer"
+                      className="w-full bg-black/80 border border-white/15 rounded-2xl p-3.5 focus:border-yellow-400 transition-colors outline-none text-white text-base sm:text-sm appearance-none cursor-pointer"
                     >
                       {SERVICE_OPTIONS.map((svc, i) => (
                         <option key={i} value={svc}>{svc}</option>
@@ -328,7 +328,7 @@ const ContactForm: React.FC = () => {
                       name="primaryRegion"
                       value={formData.primaryRegion}
                       onChange={handleInputChange}
-                      className="w-full bg-black/80 border border-white/15 rounded-2xl p-3.5 focus:border-yellow-400 transition-colors outline-none text-white text-sm appearance-none cursor-pointer"
+                      className="w-full bg-black/80 border border-white/15 rounded-2xl p-3.5 focus:border-yellow-400 transition-colors outline-none text-white text-base sm:text-sm appearance-none cursor-pointer"
                     >
                       {REGION_OPTIONS.map((reg, i) => (
                         <option key={i} value={reg}>{reg}</option>

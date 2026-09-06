@@ -1,4 +1,4 @@
-import { CaseStudy, Service, Testimonial, EventPost } from './types';
+import { CaseStudy, Service, Testimonial, EventPost, BrandPartner } from './types';
 
 export const CASE_STUDIES: CaseStudy[] = [
   {
@@ -500,5 +500,57 @@ export const UPCOMING_EVENTS: EventPost[] = [
     mediaRole: 'Official Media & Convention Partner',
     featured: true,
     tags: ['IWA At 10', 'A Wave Of Change', 'Atlanta GA', 'Ijaw Heritage', 'Fundraising Gala']
+  }
+];
+
+export const MAJOR_BRANDS: BrandPartner[] = [
+  {
+    id: 'sponsor-1',
+    name: 'Major Brand Partner',
+    logo: 'https://res.cloudinary.com/progresshenry/image/upload/v1788716911/gistcity_sponsor_2_es1qe4.png',
+    category: 'Strategic Partner',
+    subtitle: 'Brand & Event Sponsor'
+  },
+  {
+    id: 'sponsor-2',
+    name: 'Major Brand Partner',
+    logo: 'https://res.cloudinary.com/progresshenry/image/upload/v1788716930/gistcity_sponsor_5_rm0kxa.png',
+    category: 'Corporate Sponsor',
+    subtitle: 'Official Media Collaborator'
+  },
+  {
+    id: 'sponsor-3',
+    name: 'Major Brand Partner',
+    logo: 'https://res.cloudinary.com/progresshenry/image/upload/v1788716930/gistcity_sponsor_4_tprr40.png',
+    category: 'Global Partner',
+    subtitle: 'Culture & Entertainment Partner'
+  },
+  {
+    id: 'sponsor-4',
+    name: 'Major Brand Partner',
+    logo: 'https://res.cloudinary.com/progresshenry/image/upload/v1788716929/gistcity_sponsor_3_ub0d56.png',
+    category: 'Media Sponsor',
+    subtitle: 'Broadcast & Publicity Ally'
+  },
+  {
+    id: 'sponsor-5',
+    name: 'Major Brand Partner',
+    logo: 'https://res.cloudinary.com/progresshenry/image/upload/v1788716951/gistcity_sponsor_6_xcbsjc.png',
+    category: 'Brand Partner',
+    subtitle: 'International Brand Sponsor'
+  },
+  {
+    id: 'sponsor-6',
+    name: 'Major Brand Partner',
+    logo: 'https://res.cloudinary.com/progresshenry/image/upload/v1788716951/gistcity_sponsor_7_hjxxo4.png',
+    category: 'Alliance Sponsor',
+    subtitle: 'Event & Gala Partner'
+  },
+  {
+    id: 'sponsor-7',
+    name: 'Major Brand Partner',
+    logo: 'https://res.cloudinary.com/progresshenry/image/upload/v1788716952/gistcity_sponsor_lzyxov.png',
+    category: 'Enterprise Sponsor',
+    subtitle: 'Strategic Brand Partner'
   }
 ];

@@ -49,12 +49,12 @@ const WorkGrid: React.FC<WorkGridProps> = ({ limit, isLanding = false }) => {
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-2.5">
+          <div className="flex flex-nowrap md:flex-wrap overflow-x-auto no-scrollbar gap-2 pb-2 md:pb-0 max-w-full">
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => setFilter(cat)}
-                className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all border ${
+                className={`px-4 sm:px-5 py-2 sm:py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all border whitespace-nowrap shrink-0 ${
                   filter === cat 
                   ? 'bg-yellow-400 border-yellow-400 text-black shadow-lg shadow-yellow-400/20' 
                   : 'bg-neutral-950 border-white/10 text-neutral-400 hover:border-yellow-400/40 hover:text-white'
@@ -67,11 +67,11 @@ const WorkGrid: React.FC<WorkGridProps> = ({ limit, isLanding = false }) => {
         </div>
 
         {/* Stories Grid with Extracted Cover Images and Center Video Link Icon */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {displayedProjects.map((project) => (
             <div
               key={project.id}
-              className="group relative overflow-hidden rounded-[2.5rem] bg-neutral-950 border border-yellow-400/20 h-[500px] flex flex-col justify-between p-8 transition-all hover:border-yellow-400 hover:shadow-2xl hover:shadow-yellow-400/20"
+              className="group relative overflow-hidden rounded-3xl sm:rounded-[2.5rem] bg-neutral-950 border border-yellow-400/20 min-h-[470px] sm:h-[500px] flex flex-col justify-between p-5 sm:p-8 transition-all hover:border-yellow-400 hover:shadow-2xl hover:shadow-yellow-400/20"
             >
               {/* Extracted Cover Image */}
               <div className="absolute inset-0 z-0 overflow-hidden">
@@ -131,7 +131,7 @@ const WorkGrid: React.FC<WorkGridProps> = ({ limit, isLanding = false }) => {
               )}
 
               {/* Bottom Card Content: Title, Snippet & Case Study Link */}
-              <div className="relative z-10 space-y-3 pt-6 border-t border-white/10 bg-gradient-to-t from-black/95 to-transparent -mx-8 -mb-8 p-8">
+              <div className="relative z-10 space-y-3 pt-5 sm:pt-6 border-t border-white/10 bg-gradient-to-t from-black/95 to-transparent -mx-5 -mb-5 p-5 sm:-mx-8 sm:-mb-8 sm:p-8">
                 <div className="flex flex-wrap gap-2">
                   {project.tags.slice(0, 2).map(tag => (
                     <span key={tag} className="px-2.5 py-0.5 rounded-full bg-neutral-900/90 border border-white/10 text-[9px] font-bold uppercase tracking-wider text-neutral-300">

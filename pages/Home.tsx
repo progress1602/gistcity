@@ -8,6 +8,7 @@ import Services from '../components/Services';
 import BeforeAfter from '../components/BeforeAfter';
 import ContactForm from '../components/ContactForm';
 import { UpcomingEventsSection } from '../components/UpcomingEventsSection';
+import { MajorBrandsCarousel } from '../components/MajorBrandsCarousel';
 import { TESTIMONIALS } from '../data';
 import { Award, Globe, Users, Calendar, Sparkles, Radio, ArrowRight, Building2, MapPin } from 'lucide-react';
 import { AnimatedCounter } from '../components/AnimatedCounter';
@@ -68,23 +69,23 @@ const Home: React.FC = () => {
       </section>
 
       {/* About GistCity Quick Teaser */}
-      <section className="py-20 bg-neutral-950 border-b border-yellow-400/15">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-8 space-y-6">
+      <section className="py-14 sm:py-20 bg-neutral-950 border-b border-yellow-400/15">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+            <div className="lg:col-span-8 space-y-5 sm:space-y-6">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-yellow-400/10 border border-yellow-400/30 text-yellow-400 text-xs font-black uppercase tracking-widest">
                 <span>Who We Are</span>
               </div>
-              <h2 className="text-3xl sm:text-5xl font-black tracking-tight uppercase">
+              <h2 className="text-2xl sm:text-4xl md:text-5xl font-black tracking-tight uppercase">
                 A Dynamic Digital Media & Communications Platform
               </h2>
-              <p className="text-neutral-300 text-lg leading-relaxed font-medium">
+              <p className="text-neutral-300 text-base sm:text-lg leading-relaxed font-medium">
                 GistCity is dedicated to amplifying stories, brands, businesses, individuals, and events across America, Nigeria & United Kingdom. Through strategic media coverage, digital storytelling, branded content, social media promotion, and online publicity, we help brands and organizations increase visibility, connect with diverse audiences, and strengthen their public presence.
               </p>
               <div className="pt-2">
                 <Link
                   to="/about"
-                  className="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 font-black text-sm uppercase tracking-widest group"
+                  className="inline-flex items-center gap-2 text-yellow-400 hover:text-yellow-300 font-black text-xs sm:text-sm uppercase tracking-widest group"
                 >
                   <span>Explore Our Full Track Record & Story</span>
                   <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
@@ -92,7 +93,7 @@ const Home: React.FC = () => {
               </div>
             </div>
 
-            <div className="lg:col-span-4 bg-black/80 border border-yellow-400/20 rounded-3xl p-8 space-y-4 shadow-2xl">
+            <div className="lg:col-span-4 bg-black/80 border border-yellow-400/20 rounded-3xl p-6 sm:p-8 space-y-4 shadow-2xl">
               <div className="flex items-center">
                 <img
                   src="https://res.cloudinary.com/progresshenry/image/upload/v1788683391/gistcity_nn_fgnqpu.png"
@@ -112,6 +113,9 @@ const Home: React.FC = () => {
         </div>
       </section>
 
+      {/* Major Brands Carousel */}
+      <MajorBrandsCarousel />
+
       {/* Curated Media (Reduced on landing page, pointing to /work) */}
       <WorkGrid isLanding={true} limit={6} />
 
@@ -122,16 +126,16 @@ const Home: React.FC = () => {
       <Services />
 
       {/* Media & Distribution Network */}
-      <section className="py-20 bg-neutral-950 mx-4 rounded-[3rem] border border-yellow-400/20 my-12 shadow-2xl">
-        <div className="max-w-7xl mx-auto px-6 text-center">
+      <section className="py-14 sm:py-20 bg-neutral-950 mx-2 sm:mx-4 rounded-3xl sm:rounded-[3rem] border border-yellow-400/20 my-8 sm:my-12 shadow-2xl">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 text-center">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-yellow-400/10 text-yellow-400 text-xs font-black uppercase tracking-widest mb-4">
             <Radio size={14} />
             <span>Global Reach & Channels</span>
           </div>
-          <h2 className="text-2xl md:text-4xl font-black tracking-tight text-white mb-10 max-w-2xl mx-auto uppercase">
+          <h2 className="text-xl sm:text-3xl md:text-4xl font-black tracking-tight text-white mb-8 sm:mb-10 max-w-2xl mx-auto uppercase">
             Strategic Distribution Across Nigeria, America & United Kingdom
           </h2>
-          <div className="flex flex-wrap justify-center gap-4 md:gap-6">
+          <div className="flex flex-wrap justify-center gap-3 sm:gap-4 md:gap-6">
             {[
               '200K+ Social Community', 
               'Nigeria Media Hubs', 
@@ -140,7 +144,7 @@ const Home: React.FC = () => {
               'Cultural TV Channel', 
               'Video & Podcast Feeds'
             ].map(channel => (
-              <div key={channel} className="px-6 py-4 rounded-2xl bg-black/60 border border-yellow-400/20 text-base md:text-lg font-bold text-neutral-200 hover:text-yellow-400 hover:border-yellow-400/60 transition-colors">
+              <div key={channel} className="px-4 sm:px-6 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-black/60 border border-yellow-400/20 text-sm sm:text-base md:text-lg font-bold text-neutral-200 hover:text-yellow-400 hover:border-yellow-400/60 transition-colors">
                 {channel}
               </div>
             ))}
@@ -151,21 +155,21 @@ const Home: React.FC = () => {
       <BeforeAfter />
 
       {/* Testimonials - No Avatars, Nigerian Names Only */}
-      <section className="py-24 bg-black border-t border-yellow-400/15">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center space-y-3 mb-16">
+      <section className="py-16 sm:py-24 bg-black border-t border-yellow-400/15">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="text-center space-y-3 mb-10 sm:mb-16">
             <span className="text-xs font-black uppercase tracking-widest text-yellow-400">Voices of Impact</span>
-            <h2 className="text-4xl md:text-6xl font-black tracking-tight uppercase">WHAT PARTNERS SAY</h2>
-            <p className="text-neutral-400 max-w-lg mx-auto font-medium">Hear from corporate directors, concert organizers, and cultural leaders across Nigeria.</p>
+            <h2 className="text-3xl sm:text-4xl md:text-6xl font-black tracking-tight uppercase">WHAT PARTNERS SAY</h2>
+            <p className="text-neutral-400 max-w-lg mx-auto font-medium text-sm sm:text-base">Hear from corporate directors, concert organizers, and cultural leaders across Nigeria.</p>
           </div>
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid md:grid-cols-2 gap-6 sm:gap-8">
             {TESTIMONIALS.slice(0, 4).map((t, idx) => (
-              <div key={idx} className="bg-neutral-950 p-10 md:p-12 rounded-[2.5rem] border border-yellow-400/15 space-y-8 hover:border-yellow-400/50 transition-all shadow-xl">
-                <p className="text-xl md:text-2xl font-medium leading-relaxed italic text-neutral-200">"{t.quote}"</p>
-                <div className="flex flex-col sm:flex-row sm:items-end justify-between border-t border-yellow-400/15 pt-6 gap-4">
+              <div key={idx} className="bg-neutral-950 p-6 sm:p-10 md:p-12 rounded-3xl md:rounded-[2.5rem] border border-yellow-400/15 space-y-6 sm:space-y-8 hover:border-yellow-400/50 transition-all shadow-xl">
+                <p className="text-lg sm:text-xl md:text-2xl font-medium leading-relaxed italic text-neutral-200">"{t.quote}"</p>
+                <div className="flex flex-col sm:flex-row sm:items-end justify-between border-t border-yellow-400/15 pt-5 sm:pt-6 gap-3 sm:gap-4">
                   {/* Clean Nigerian Name Presentation without Avatars */}
                   <div className="space-y-1">
-                    <h4 className="font-black text-white text-lg tracking-tight hover:text-yellow-400 transition-colors">
+                    <h4 className="font-black text-white text-base sm:text-lg tracking-tight hover:text-yellow-400 transition-colors">
                       {t.author}
                     </h4>
                     <p className="text-xs text-yellow-400 font-bold uppercase tracking-wider">
