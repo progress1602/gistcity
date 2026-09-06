@@ -1,8 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, MapPin, Users, Radio, ArrowUpRight, Clock, Tag } from 'lucide-react';
+import { Calendar, MapPin, Users, Radio, ArrowUpRight, Clock, Tag, CheckCircle2, ExternalLink, FileText } from 'lucide-react';
 import { UPCOMING_EVENTS } from '../data';
 import { EventPost } from '../types';
+import {
+  GISTCITY_WHATSAPP_NUMBER,
+  GISTCITY_FORMATTED_PHONE,
+  formatEventRsvpWhatsAppMessage,
+  sendToWhatsApp,
+  createWhatsAppUrl
+} from '../utils/whatsapp';
+import { WhatsAppIcon } from './ContactForm';
 
 interface UpcomingEventsProps {
   isLanding?: boolean;
@@ -13,6 +21,34 @@ export const UpcomingEventsSection: React.FC<UpcomingEventsProps> = ({ isLanding
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [activeModalEvent, setActiveModalEvent] = useState<EventPost | null>(null);
   const [rsvpSubmitted, setRsvpSubmitted] = useState(false);
+  const [rsvpWhatsAppUrl, setRsvpWhatsAppUrl] = useState('');
+  const [rsvpMessageText, setRsvpMessageText] = useState('');
+  const [showRsvpPreview, setShowRsvpPreview] = useState(false);
+
+  const [rsvpData, setRsvpData] = useState({
+    fullName: '',
+    organization: '',
+    email: '',
+    phone: '',
+    passType: 'Press / Media Accreditation',
+    specialNotes: ''
+  });
+
+  const handleOpenModal = (event: EventPost) => {
+    setActiveModalEvent(event);
+    setRsvpSubmitted(false);
+    setRsvpWhatsAppUrl('');
+    setRsvpMessageText('');
+    setShowRsvpPreview(false);
+    setRsvpData({
+      fullName: '',
+      organization: '',
+      email: '',
+      phone: '',
+      passType: 'Press / Media Accreditation',
+      specialNotes: ''
+    });
+  };
 
   const categories = ['All', ...Array.from(new Set(UPCOMING_EVENTS.map(e => e.category)))];
 
@@ -168,11 +204,8 @@ export const UpcomingEventsSection: React.FC<UpcomingEventsProps> = ({ isLanding
                   </div>
 
                   <button
-                    onClick={() => {
-                      setActiveModalEvent(evt);
-                      setRsvpSubmitted(false);
-                    }}
-                    className="inline-flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-black px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all transform active:scale-95 shadow-md shadow-yellow-400/20 whitespace-nowrap"
+                    onClick={() => handleOpenModal(evt)}
+                    className="inline-flex items-center justify-center gap-2 bg-yellow-400 hover:bg-yellow-300 text-black px-5 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all transform active:scale-95 shadow-md shadow-yellow-400/20 whitespace-nowrap cursor-pointer"
                   >
                     <span>Press & VIP Accreditation</span>
                     <ArrowUpRight size={14} />
@@ -199,11 +232,11 @@ export const UpcomingEventsSection: React.FC<UpcomingEventsProps> = ({ isLanding
 
       {/* Press & Accreditation Modal */}
       {activeModalEvent && (
-        <div className="fixed inset-0 z-[100] bg-black/80 backdrop-blur-md flex items-center justify-center p-4">
-          <div className="bg-neutral-950 border border-yellow-400/40 rounded-3xl max-w-xl w-full p-8 relative shadow-2xl shadow-yellow-400/20 text-white animate-in fade-in zoom-in-95 duration-200">
+        <div className="fixed inset-0 z-[100] bg-black/85 backdrop-blur-md flex items-center justify-center p-4">
+          <div className="bg-neutral-950 border border-yellow-400/40 rounded-3xl max-w-xl w-full p-6 sm:p-8 relative shadow-2xl shadow-yellow-400/20 text-white animate-in fade-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
             <button
               onClick={() => setActiveModalEvent(null)}
-              className="absolute top-6 right-6 text-neutral-400 hover:text-yellow-400 text-xl font-bold"
+              className="absolute top-6 right-6 text-neutral-400 hover:text-yellow-400 text-xl font-bold cursor-pointer"
               aria-label="Close modal"
             >
               ✕
@@ -211,45 +244,80 @@ export const UpcomingEventsSection: React.FC<UpcomingEventsProps> = ({ isLanding
 
             {!rsvpSubmitted ? (
               <div className="space-y-5">
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-yellow-400/10 text-yellow-400 text-xs font-bold uppercase tracking-wider">
-                  Accreditation Desk
+                <div className="flex flex-wrap items-center justify-between gap-2 border-b border-white/10 pb-4">
+                  <div className="flex items-center gap-2">
+                    <span className="text-[10px] font-black uppercase tracking-wider text-yellow-400">
+                      Form Identifier:
+                    </span>
+                    <span className="px-2.5 py-0.5 rounded-full bg-yellow-400/15 border border-yellow-400/40 text-yellow-400 text-[10px] font-black uppercase tracking-wider">
+                      Event RSVP & Media Accreditation
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[11px] text-emerald-400 font-bold bg-emerald-500/10 px-2.5 py-0.5 rounded-full border border-emerald-500/20">
+                    <WhatsAppIcon size={12} />
+                    <span>WhatsApp Routed</span>
+                  </div>
                 </div>
 
                 <div>
-                  <h3 className="text-2xl font-black tracking-tight text-white">
+                  <h3 className="text-2xl font-black tracking-tight text-white uppercase">
                     Request Media Pass / RSVP
                   </h3>
                   <p className="text-xs text-yellow-400 font-bold mt-1">
                     {activeModalEvent.title}
                   </p>
-                  <p className="text-xs text-neutral-400 mt-1">
-                    {activeModalEvent.venue} • {activeModalEvent.date}
+                  <p className="text-xs text-neutral-400 mt-0.5">
+                    {activeModalEvent.venue} • {activeModalEvent.month} {activeModalEvent.day}, {activeModalEvent.year}
                   </p>
                 </div>
 
                 <form
                   onSubmit={(e) => {
                     e.preventDefault();
+                    const message = formatEventRsvpWhatsAppMessage({
+                      eventTitle: activeModalEvent.title,
+                      eventVenue: activeModalEvent.venue,
+                      eventDate: `${activeModalEvent.month} ${activeModalEvent.day}, ${activeModalEvent.year} (${activeModalEvent.time})`,
+                      fullName: rsvpData.fullName,
+                      organization: rsvpData.organization,
+                      email: rsvpData.email,
+                      phone: rsvpData.phone,
+                      passType: rsvpData.passType,
+                      specialNotes: rsvpData.specialNotes,
+                    });
+
+                    const targetUrl = createWhatsAppUrl(message, GISTCITY_WHATSAPP_NUMBER);
+                    setRsvpMessageText(message);
+                    setRsvpWhatsAppUrl(targetUrl);
                     setRsvpSubmitted(true);
+                    sendToWhatsApp(message, GISTCITY_WHATSAPP_NUMBER);
                   }}
-                  className="space-y-4 pt-2"
+                  className="space-y-4 pt-1"
                 >
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Full Name</label>
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-300">
+                        Full Name *
+                      </label>
                       <input
                         required
                         type="text"
+                        value={rsvpData.fullName}
+                        onChange={(e) => setRsvpData(prev => ({ ...prev, fullName: e.target.value }))}
                         placeholder="Your full name"
                         className="w-full bg-black/70 border border-white/10 rounded-xl p-3 text-sm focus:border-yellow-400 outline-none text-white"
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Media / Organization</label>
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-300">
+                        Media / Organization *
+                      </label>
                       <input
                         required
                         type="text"
-                        placeholder="Brand or Outlet"
+                        value={rsvpData.organization}
+                        onChange={(e) => setRsvpData(prev => ({ ...prev, organization: e.target.value }))}
+                        placeholder="Brand or Outlet name"
                         className="w-full bg-black/70 border border-white/10 rounded-xl p-3 text-sm focus:border-yellow-400 outline-none text-white"
                       />
                     </div>
@@ -257,67 +325,137 @@ export const UpcomingEventsSection: React.FC<UpcomingEventsProps> = ({ isLanding
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Email Address</label>
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-300">
+                        Email Address *
+                      </label>
                       <input
                         required
                         type="email"
+                        value={rsvpData.email}
+                        onChange={(e) => setRsvpData(prev => ({ ...prev, email: e.target.value }))}
                         placeholder="press@company.com"
                         className="w-full bg-black/70 border border-white/10 rounded-xl p-3 text-sm focus:border-yellow-400 outline-none text-white"
                       />
                     </div>
                     <div className="space-y-1.5">
-                      <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Pass Type</label>
-                      <select className="w-full bg-black/70 border border-white/10 rounded-xl p-3 text-sm focus:border-yellow-400 outline-none text-white">
-                        <option>Press / Media Accreditation</option>
-                        <option>VIP Guest RSVP</option>
-                        <option>Sponsorship & Brand Partnership</option>
-                        <option>Talent / Publicist Representative</option>
-                      </select>
+                      <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-300">
+                        WhatsApp / Phone *
+                      </label>
+                      <input
+                        required
+                        type="tel"
+                        value={rsvpData.phone}
+                        onChange={(e) => setRsvpData(prev => ({ ...prev, phone: e.target.value }))}
+                        placeholder="+1 713... or +234..."
+                        className="w-full bg-black/70 border border-white/10 rounded-xl p-3 text-sm focus:border-yellow-400 outline-none text-white"
+                      />
                     </div>
                   </div>
 
                   <div className="space-y-1.5">
-                    <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-400">Special Notes or Red Carpet Request</label>
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-300">
+                      Pass Type Requested
+                    </label>
+                    <select
+                      value={rsvpData.passType}
+                      onChange={(e) => setRsvpData(prev => ({ ...prev, passType: e.target.value }))}
+                      className="w-full bg-black/70 border border-white/10 rounded-xl p-3 text-sm focus:border-yellow-400 outline-none text-white appearance-none cursor-pointer"
+                    >
+                      <option value="Press / Media Accreditation">Press / Media Accreditation</option>
+                      <option value="VIP Guest RSVP">VIP Guest RSVP</option>
+                      <option value="Sponsorship & Brand Partnership">Sponsorship & Brand Partnership</option>
+                      <option value="Talent / Publicist Representative">Talent / Publicist Representative</option>
+                    </select>
+                  </div>
+
+                  <div className="space-y-1.5">
+                    <label className="text-[10px] font-bold uppercase tracking-widest text-neutral-300">
+                      Special Notes or Red Carpet Request
+                    </label>
                     <textarea
                       rows={3}
+                      value={rsvpData.specialNotes}
+                      onChange={(e) => setRsvpData(prev => ({ ...prev, specialNotes: e.target.value }))}
                       placeholder="Specify camera crew size, interview requests with headliners, or credentials required..."
                       className="w-full bg-black/70 border border-white/10 rounded-xl p-3 text-sm focus:border-yellow-400 outline-none text-white resize-none"
                     />
                   </div>
 
-                  <div className="pt-2 flex items-center justify-end gap-3">
-                    <button
-                      type="button"
-                      onClick={() => setActiveModalEvent(null)}
-                      className="px-5 py-2.5 rounded-full text-xs font-bold text-neutral-400 hover:text-white"
-                    >
-                      Cancel
-                    </button>
+                  <div className="pt-2 space-y-3">
                     <button
                       type="submit"
-                      className="bg-yellow-400 hover:bg-yellow-300 text-black px-6 py-2.5 rounded-full text-xs font-black uppercase tracking-wider transition-all shadow-lg shadow-yellow-400/20"
+                      className="w-full bg-gradient-to-r from-emerald-500 via-green-500 to-emerald-600 hover:from-emerald-400 hover:to-green-500 text-black py-3.5 px-6 rounded-full text-xs font-black uppercase tracking-wider transition-all shadow-lg shadow-emerald-500/25 flex items-center justify-center gap-2 cursor-pointer"
                     >
-                      Submit Accreditation Request
+                      <WhatsAppIcon size={18} className="text-black fill-black" />
+                      <span>Send Request to WhatsApp ({GISTCITY_FORMATTED_PHONE})</span>
                     </button>
+                    <p className="text-[10px] text-center text-neutral-400">
+                      Arranges your accreditation pass application and delivers it directly to GistCity's WhatsApp Desk.
+                    </p>
                   </div>
                 </form>
               </div>
             ) : (
-              <div className="py-8 text-center space-y-4">
-                <div className="w-16 h-16 bg-yellow-400/20 text-yellow-400 rounded-full flex items-center justify-center mx-auto text-2xl font-black">
-                  ✓
+              /* Success & Dispatch State */
+              <div className="py-6 text-center space-y-5 animate-in fade-in duration-200">
+                <div className="w-14 h-14 bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 rounded-full flex items-center justify-center mx-auto text-2xl font-black shadow-xl shadow-emerald-500/20">
+                  <CheckCircle2 size={28} />
                 </div>
-                <h3 className="text-2xl font-black text-white">
-                  Accreditation Request Received
-                </h3>
-                <p className="text-sm text-neutral-300 max-w-md mx-auto leading-relaxed">
-                  Thank you! Our editorial and media logistics desk has received your application for <strong className="text-yellow-400">{activeModalEvent.title}</strong>. We will confirm credentials via email within 24 hours.
-                </p>
+
+                <div className="space-y-2">
+                  <span className="inline-block px-3 py-1 rounded-full bg-yellow-400/15 border border-yellow-400/40 text-yellow-400 text-[11px] font-black uppercase tracking-wider">
+                    Form Tagged: Event RSVP & Media Accreditation
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-black text-white uppercase">
+                    Accreditation Request Sent to WhatsApp!
+                  </h3>
+                  <p className="text-xs sm:text-sm text-neutral-300 max-w-md mx-auto leading-relaxed">
+                    Your pass request for <strong className="text-yellow-400">{activeModalEvent.title}</strong> has been arranged and delivered to GistCity's WhatsApp line: <strong className="text-emerald-400 font-bold">{GISTCITY_FORMATTED_PHONE}</strong>.
+                  </p>
+                </div>
+
+                <div className="space-y-3 max-w-sm mx-auto">
+                  <a
+                    href={rsvpWhatsAppUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full bg-emerald-500 hover:bg-emerald-400 text-black font-black py-3 px-6 rounded-full text-xs uppercase tracking-widest flex items-center justify-center gap-2 transition-all shadow-xl shadow-emerald-500/30"
+                  >
+                    <WhatsAppIcon size={18} />
+                    <span>Open in WhatsApp Now</span>
+                    <ExternalLink size={14} />
+                  </a>
+                  <p className="text-[11px] text-neutral-400">
+                    Tap to open chat directly if WhatsApp did not open automatically.
+                  </p>
+                </div>
+
+                {/* Message preview toggle */}
+                <div className="text-left bg-black/80 rounded-xl border border-white/10 p-3 max-w-sm mx-auto space-y-2">
+                  <button
+                    type="button"
+                    onClick={() => setShowRsvpPreview(!showRsvpPreview)}
+                    className="w-full flex items-center justify-between text-xs font-bold text-yellow-400 hover:text-yellow-300"
+                  >
+                    <span className="flex items-center gap-1.5">
+                      <FileText size={13} />
+                      <span>{showRsvpPreview ? 'Hide Arranged Text' : 'View Arranged WhatsApp Text'}</span>
+                    </span>
+                    <span>{showRsvpPreview ? '▲' : '▼'}</span>
+                  </button>
+
+                  {showRsvpPreview && (
+                    <pre className="text-[10px] font-mono text-neutral-300 whitespace-pre-wrap leading-relaxed pt-2 border-t border-white/10 max-h-48 overflow-y-auto">
+                      {rsvpMessageText}
+                    </pre>
+                  )}
+                </div>
+
                 <button
                   onClick={() => setActiveModalEvent(null)}
-                  className="mt-4 bg-yellow-400 text-black px-7 py-2.5 rounded-full text-xs font-black uppercase tracking-widest hover:bg-yellow-300"
+                  className="mt-2 text-xs font-bold uppercase tracking-widest text-neutral-400 hover:text-white cursor-pointer"
                 >
-                  Done
+                  Close Window
                 </button>
               </div>
             )}

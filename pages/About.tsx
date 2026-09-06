@@ -15,6 +15,7 @@ import {
   ArrowRight 
 } from 'lucide-react';
 import { AnimatedCounter } from '../components/AnimatedCounter';
+import { NigeriaFlag, UnitedStatesFlag, UnitedKingdomFlag } from '../components/CountryFlags';
 
 const About: React.FC = () => {
   const trackRecordItems: {
@@ -250,22 +251,28 @@ const About: React.FC = () => {
         {/* Global Hubs Strip */}
         <div className="mt-20 p-10 md:p-14 rounded-[2.5rem] bg-neutral-950 border border-yellow-400/20 shadow-2xl">
           <div className="grid md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-yellow-400/15">
-            <div className="space-y-2 pb-6 md:pb-0">
-              <span className="text-3xl">🇳🇬</span>
+            <div className="space-y-3 pb-6 md:pb-0 flex flex-col items-center">
+              <div className="transition-transform duration-200 hover:scale-110">
+                <NigeriaFlag className="w-12 h-8" />
+              </div>
               <h4 className="text-xl font-black text-yellow-400">Nigeria</h4>
               <p className="text-sm text-neutral-400 max-w-xs mx-auto">
                 Lagos & Abuja bureaus covering the pulse of African music, business, culture, and social developments.
               </p>
             </div>
-            <div className="space-y-2 pt-6 md:pt-0 pb-6 md:pb-0 md:px-6">
-              <span className="text-3xl">🇺🇸</span>
+            <div className="space-y-3 pt-6 md:pt-0 pb-6 md:pb-0 md:px-6 flex flex-col items-center">
+              <div className="transition-transform duration-200 hover:scale-110">
+                <UnitedStatesFlag className="w-12 h-8" />
+              </div>
               <h4 className="text-xl font-black text-yellow-400">United States</h4>
               <p className="text-sm text-neutral-400 max-w-xs mx-auto">
                 Connecting diaspora communities, entertainment events, and cross-continental brand partnerships.
               </p>
             </div>
-            <div className="space-y-2 pt-6 md:pt-0 md:pl-6">
-              <span className="text-3xl">uk</span>
+            <div className="space-y-3 pt-6 md:pt-0 md:pl-6 flex flex-col items-center">
+              <div className="transition-transform duration-200 hover:scale-110">
+                <UnitedKingdomFlag className="w-12 h-8" />
+              </div>
               <h4 className="text-xl font-black text-yellow-400">United Kingdom</h4>
               <p className="text-sm text-neutral-400 max-w-xs mx-auto">
                 London-based coverage amplifying lifestyle, cultural showcases, and international spotlight features.
